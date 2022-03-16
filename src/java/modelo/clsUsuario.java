@@ -11,14 +11,14 @@ package modelo;
  */
 public class clsUsuario {
   
-    // Definición de atributos
+    // Definición de Atributos
     private String nombre;
     private int edad;
 
     /*
-    Definicipin de los Métodos
-    Propiedades get/set
-     */
+        Definicipin de los Métodos
+        Propiedades get/set
+    */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -44,4 +44,9 @@ public class clsUsuario {
         this.nombre = nombre;
         this.edad = edad;
     }
+    
+    /* Método para definir Procesos
+     * (Conexión a BD, validaciones, etc.)
+    */
+    
 }
