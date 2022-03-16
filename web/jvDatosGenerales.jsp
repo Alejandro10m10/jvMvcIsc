@@ -25,7 +25,7 @@
                 <tr>
                    <td>Edad:</td>
                    <td>
-                       <input type="text" id="txtEdad" name="txtEdad" placeholder="Captura tu edad...">
+                       <input type="number" id="txtEdad" name="txtEdad" placeholder="Captura tu edad...">
                    </td>
                </tr>
                <tr>

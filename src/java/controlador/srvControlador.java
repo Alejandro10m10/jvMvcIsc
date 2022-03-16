@@ -7,10 +7,13 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.clsUsuario;
 
 /**
  *
@@ -29,17 +32,28 @@ public class srvControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet srvControlador</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet srvControlador at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        // Definición de los datos recibidos
+        String nombre = request.getParameter("txtNombre");
+        String edad = request.getParameter("txtEdad");
+        
+        //Validar los datos recibidos
+        if(nombre != null && !nombre.equals("") 
+                && edad != null && !edad.equals("") ){
+            
+            //Datos recibidos correctos, procesarlos con el Modelo
+            clsUsuario persona = new clsUsuario(nombre, Integer.parseInt(edad));
+
+            /* 
+             *   Enviar el control de ejecución a la vista
+             *   Se enviara el objeto persona para manipular sus datos
+            */
+            request.getSession().setAttribute("datosPersona", persona);
+            request.getRequestDispatcher("jvDatosCorrectos.jsp").forward(request, response);
+            
+        } else{
+            request.getSession().setAttribute("errorCode", "1");
+            request.getRequestDispatcher("jvControlErrores.jsp").forward(request, response);
         }
     }
 
@@ -55,7 +69,15 @@ public class srvControlador extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        try {
+            processRequest(request, response);
+
+        } catch (IOException | ServletException ex) {
+            Logger.getLogger(srvControlador.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     /**
@@ -69,7 +91,14 @@ public class srvControlador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        try {
+            processRequest(request, response);
+
+        } catch (IOException | ServletException ex) {
+            Logger.getLogger(srvControlador.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

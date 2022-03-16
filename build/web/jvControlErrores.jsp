@@ -4,6 +4,16 @@
     Author     : aleja
 --%>
 
+
+<%
+    String errorVista = (String)request.getSession().getAttribute("errorCode");
+    
+    String mensaje = "";
+    if(errorVista.equals("1")){
+        mensaje = "Error en formato de datos (Nombre / Edad). Verifique!";
+    }
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +22,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Algo salio mal!</h1>
+        <p><%=mensaje%></p>
     </body>
 </html>

@@ -4,6 +4,12 @@
     Author     : aleja
 --%>
 
+<%@page import="modelo.clsUsuario"%>
+
+<%
+    clsUsuario personaVista = (clsUsuario)request.getSession().getAttribute("datosPersona");
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +18,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Datos Correctos!</h1>
+        <br>
+        <p>Nombre: <span><%=personaVista.getNombre()%></span> </p>
+        <p>Edad: <span><%=personaVista.getEdad()%></span> </p>
+        <a href="jvDatosGenerales.jsp">Regresar a capturar datos...</a>
     </body>
 </html>
