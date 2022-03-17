@@ -36,13 +36,34 @@ public class srvControlador extends HttpServlet {
         // Definición de los datos recibidos
         String nombre = request.getParameter("txtNombre");
         String edad = request.getParameter("txtEdad");
+        String email = request.getParameter("txtEmail");
         
-        //Validar los datos recibidos
-        if(nombre != null && !nombre.equals("") 
-                && edad != null && !edad.equals("") ){
-            
+        String validacion = "0";
+        
+        /* 
+         *  Validar los datos recibidos
+        */
+        
+        //Validar el nombre
+        if(nombre == null || nombre.equals("")) validacion = "1"; 
+        //Validar la edad
+        if(edad == null || edad.equals("")) validacion = "2";
+        
+        //Validar que la edad esté entre 0 y 99
+        try {
+            int edadNumero = Integer.parseInt(edad);
+            if( !((edadNumero >= 0) && (edadNumero <= 99)) ) validacion = "3";
+        } catch (NumberFormatException e) {
+            validacion = "4";
+        }
+        
+        //Validar el email
+        if(email == null || email.equals("")) validacion = "5";
+        
+        //Los datos del usuario son correcots
+        if(validacion.equals("0")){
             //Datos recibidos correctos, procesarlos con el Modelo
-            clsUsuario persona = new clsUsuario(nombre, Integer.parseInt(edad));
+            clsUsuario persona = new clsUsuario(nombre, Integer.parseInt(edad), email);
 
             /* 
              *   Enviar el control de ejecución a la vista
@@ -52,8 +73,8 @@ public class srvControlador extends HttpServlet {
             request.getRequestDispatcher("jvDatosCorrectos.jsp").forward(request, response);
             
         } else{
-            request.getSession().setAttribute("errorCode", "1");
-            request.getRequestDispatcher("jvControlErrores.jsp").forward(request, response);
+           request.getSession().setAttribute("errorCode", validacion);
+           request.getRequestDispatcher("jvControlErrores.jsp").forward(request, response);
         }
     }
 

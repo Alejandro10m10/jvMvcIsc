@@ -29,6 +29,12 @@
                    </td>
                </tr>
                <tr>
+                   <td>Email:</td>
+                   <td>
+                       <input type="email" id="txtCorreo" name="txtEmail" placeholder="Captura tu correo...">
+                   </td>
+               </tr>
+               <tr>
                    <td colspan="2">
                        <input type="submit" id="btnAceptar" name="btnAceptar" value="Aceptar">
                    </td>

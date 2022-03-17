@@ -19,9 +19,9 @@
     </head>
     <body>
         <h1>Datos Correctos!</h1>
-        <br>
         <p>Nombre: <span><%=personaVista.getNombre()%></span> </p>
         <p>Edad: <span><%=personaVista.getEdad()%></span> </p>
+        <p>Correo: <span><%=personaVista.getEmail()%></span> </p>
         <a href="jvDatosGenerales.jsp">Regresar a capturar datos...</a>
     </body>
 </html>

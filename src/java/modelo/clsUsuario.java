@@ -14,6 +14,7 @@ public class clsUsuario {
     // Definición de Atributos
     private String nombre;
     private int edad;
+    private String email;
 
     /*
         Definicipin de los Métodos
@@ -35,14 +36,23 @@ public class clsUsuario {
         return edad;
     }
     
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    
     // Definición de los constructores
     public clsUsuario(){
         
     }
     
-    public clsUsuario(String nombre, int edad){
+    public clsUsuario(String nombre, int edad, String email){
         this.nombre = nombre;
         this.edad = edad;
+        this.email = email;
     }
     
     /* Método para definir Procesos
