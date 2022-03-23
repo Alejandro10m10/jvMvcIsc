@@ -38,44 +38,51 @@ public class srvControlador extends HttpServlet {
         String edad = request.getParameter("txtEdad");
         String email = request.getParameter("txtEmail");
         
-        String validacion = "0";
+        // Definición de variables de ayuda
+        int edadNumero;
+        int validacion = 0;
         
         /* 
          *  Validar los datos recibidos
         */
         
         //Validar el nombre
-        if(nombre == null || nombre.equals("")) validacion = "1"; 
+        if(nombre == null || nombre.equals("")) { validacion = 1; sendErrorCode(request, response, validacion); return; } 
         //Validar la edad
-        if(edad == null || edad.equals("")) validacion = "2";
+        if(edad == null || edad.equals("")) { validacion = 2; sendErrorCode(request, response, validacion); return; }
         
         //Validar que la edad esté entre 0 y 99
         try {
-            int edadNumero = Integer.parseInt(edad);
-            if( !((edadNumero >= 0) && (edadNumero <= 99)) ) validacion = "3";
+            edadNumero = Integer.parseInt(edad);
+            if( !((edadNumero >= 0) && (edadNumero <= 99)) ) { validacion = 3; sendErrorCode(request, response, validacion); return; }
         } catch (NumberFormatException e) {
-            validacion = "4";
+            validacion = 4; sendErrorCode(request, response, validacion); return;
         }
         
         //Validar el email
-        if(email == null || email.equals("")) validacion = "5";
+        if(email == null || email.equals("")) { validacion = 5; sendErrorCode(request, response, validacion); return; }
         
         //Los datos del usuario son correcots
-        if(validacion.equals("0")){
+        if(validacion == 0){
             //Datos recibidos correctos, procesarlos con el Modelo
-            clsUsuario persona = new clsUsuario(nombre, Integer.parseInt(edad), email);
+            clsUsuario persona = new clsUsuario(nombre, edadNumero, email);
 
             /* 
              *   Enviar el control de ejecución a la vista
              *   Se enviara el objeto persona para manipular sus datos
             */
-            request.getSession().setAttribute("datosPersona", persona);
-            request.getRequestDispatcher("jvDatosCorrectos.jsp").forward(request, response);
-            
-        } else{
-           request.getSession().setAttribute("errorCode", validacion);
-           request.getRequestDispatcher("jvControlErrores.jsp").forward(request, response);
+            sendCorrectData(request, response, persona);
         }
+    }
+    
+    private void sendErrorCode(HttpServletRequest request, HttpServletResponse response, int errorKeyCode) throws ServletException, IOException{
+        request.getSession().setAttribute("errorCode", String.valueOf(errorKeyCode));
+        request.getRequestDispatcher("jvControlErrores.jsp").forward(request, response);
+    }
+    
+    private void sendCorrectData(HttpServletRequest request, HttpServletResponse response, clsUsuario persona) throws ServletException, IOException{
+        request.getSession().setAttribute("datosPersona", persona);
+        request.getRequestDispatcher("jvDatosCorrectos.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

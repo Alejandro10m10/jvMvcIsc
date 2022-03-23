@@ -21,7 +21,7 @@
         <h1>Datos Correctos!</h1>
         <p>Nombre: <span><%=personaVista.getNombre()%></span> </p>
         <p>Edad: <span><%=personaVista.getEdad()%></span> </p>
-        <p>Correo: <span><%=personaVista.getEmail()%></span> </p>
+        <p>Email: <span><%=personaVista.getEmail()%></span> </p>
         <a href="jvDatosGenerales.jsp">Regresar a capturar datos...</a>
     </body>
 </html>
