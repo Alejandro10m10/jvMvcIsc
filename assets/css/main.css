@@ -1,5 +1,6 @@
 :root{
     --softGrey: #fafafa;
+    --grey: rgb(219, 219, 219);
     --greyOpacity: rgba(142, 142, 142, 0.884);
     --strongBlue: #0095f6;
     --white: #FFFF;
@@ -16,6 +17,10 @@
 html{
     font-size: 62.5%;
     font-family: var(--primaryFont);
+}
+
+body{
+    font-size: 1.6rem;
 }
 
 li{
@@ -37,17 +42,13 @@ body{
 /* User control */
 .user-control{
     width: 100%;
-    height: 562px;
-    /*
-    width: 60%;
-    margin: 0 auto;
-    background-color: var(--lineGrey); 
-    border-radius: 10px;
-    display: grid;
-    place-self: center;
-    height: 230px;
-    */
+    height: 100%;
 }
+
+.user_control__sign-up{
+    padding-bottom: 20px;
+}
+
 .user-control__header,
 .user-control__subtitle{
     text-align: center;
@@ -68,9 +69,10 @@ body{
 }
 
 .line{
-    background-color: rgba(219,219,219,1);
+    background-color: rgba(219, 219, 219, 1);
     height: 1px;
     width: 80%;
+    max-width: 270px;
     display: grid;
     place-content: center;
     margin: 0 auto;
@@ -89,6 +91,7 @@ body{
 
 .user-control__form label{
     font-size: 1.4rem;
+    font-weight: bold;
 }
 
 .user-control__form input{
@@ -97,7 +100,7 @@ body{
     text-overflow: ellipsis;
     padding: 9px 8px 7px 8px;
     margin-bottom: 10px;
-    border: 1px solid rgb(219, 219, 219);
+    border: 1px solid var(--grey);
     border-radius: 4px;
     outline: none;
 }
@@ -142,24 +145,72 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /* Log-in */
+
+.user-control__downloads{
+    margin-bottom: 20px;
+}
+
 .user-control__log-in__title,
 .user-control__downloads__title{
-    margin-top: 50px;
     text-align: center;
     font-size: 1.4rem;
 }
 
+.user_control__log-in{
+    margin-top: 20px;
+}
+
+.user-control__downloads__title{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
 
 /* Downloads */
 .user-control__downloads__store{
-    margin-top: 15px;
     display: grid;
-    grid-template-columns: repeat(2, 134px);
+    grid-template-rows: repeat(2, 40px);
     gap: 10px;
     place-content: center;
+    height: 90px;
 }
 
 .user-control__downloads__anchor__img{
     width: 134px;
     height: 40px;
+}
+
+/* Media Queries */
+@media (min-width: 290px){
+    .user-control__downloads__store{
+        grid-template-columns: repeat(2, 134px);
+        grid-template-rows: none;
+        height: 40px;
+    }
+}
+
+@media (min-width: 450px){
+    .user-control{
+        width: 436.8px;
+        margin: 0 auto 0 auto;
+        padding-top: 40px;
+    }
+
+    .user_control__sign-up,
+    .user_control__log-in{
+        border: 1px solid var(--grey);
+        background-color: var(--white);
+        box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+        border-radius: 4px;
+    }
+
+    .user_control__log-in{
+        width: 100%;
+        height: 48px;
+        padding: 10px 1px;
+        display: grid;
+        place-content: center;
+    }
+
+
+ 
 }
