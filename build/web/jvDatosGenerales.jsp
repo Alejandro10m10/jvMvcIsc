@@ -14,12 +14,8 @@
     <title>Control de Usuario</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../assets/css/main.css">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    
 </head>
 <body>
     <main class="user-control">
@@ -49,10 +45,10 @@
             <p class="user-control__downloads__title">Obten la app.</p>
             <div class="user-control__downloads__store">
                 <a href="#" class="user-control__downloads__anchor">
-                    <img class="user-control__downloads__anchor__img" src="../assets/img/icons/downloadOnAppStore.png" alt="Download on the App Store">
+                    <img class="user-control__downloads__anchor__img" src="./assets/img/icons/downloadOnAppStore.png" alt="Download on the App Store">
                 </a>
                 <a href="#" class="user-control__downloads__anchor">
-                    <img class="user-control__downloads__anchor__img" src="../assets/img/icons/downloadOnGooglePlay.png" alt="Get it on Google Play">
+                    <img class="user-control__downloads__anchor__img" src="./assets/img/icons/downloadOnGooglePlay.png" alt="Get it on Google Play">
                 </a>
             </div>
         </section>
