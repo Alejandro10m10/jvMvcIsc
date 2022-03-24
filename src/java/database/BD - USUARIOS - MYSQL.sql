@@ -70,7 +70,7 @@ INNER JOIN tipo_usuario AS t ON u.TIP_CVE_TIPOUSUARIO = t.TIP_CVE_TIPOUSUARIO
 
 -- Procedimiento almacenado
 delimiter $$
--- DROP PROCEDURE sp_Acceso;
+-- DROP PROCEDURE sp_ValidarAcceso;
 CREATE PROCEDURE sp_ValidarAcceso(
 	IN usuario VARCHAR(20),
 	IN contrasenia VARCHAR(20)
